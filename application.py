@@ -11,7 +11,7 @@ import nltk
 
 application = Flask(__name__)
 
-s3 = boto3.resource('s3')
+s3 = boto3.resource('s3', 'us-east-1')
 object = s3.Object('adrian-kettle-capstone', 'model.pkl')
 model = pickle.loads(object.get()['Body'].read())
 
