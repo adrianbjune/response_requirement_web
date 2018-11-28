@@ -16,7 +16,7 @@ object = s3.Object('adrian-kettle-capstone', 'model.pkl')
 model = pickle.loads(object.get()['Body'].read())
 
 
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb', 'us-east-1')
 table = dynamodb.Table('response_requirements')
 
 @application.route('/', methods = ['GET'])
