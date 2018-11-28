@@ -70,12 +70,13 @@ def retrieve():
 	print(response)
 	messages = []
 	for mess in response['Items']:
-		for word in forbidden:
-			if word not in mess['text']:
-				messages.append({'text':mess['text'], 
-					'label':int(mess['label']),
-					'prediction':int(mess['prediction']),
-					'ts':int(mess['timestamp'])})
+		if any([word in mess['text'] for word in forbidden]):
+			break
+		else:	
+			messages.append({'text':mess['text'], 
+				'label':int(mess['label']),
+				'prediction':int(mess['prediction']),
+				'ts':int(mess['timestamp'])})
 	messages.sort(reverse=True, key=(lambda x : x['ts']))
 	return jsonify({'items':messages})
 
