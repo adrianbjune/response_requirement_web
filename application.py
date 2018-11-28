@@ -6,7 +6,7 @@ import boto3
 import time
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 s3 = boto3.resource('s3')
 object = s3.Object('adrian-kettle-capstone', 'model.pkl')
@@ -16,14 +16,14 @@ model = pickle.loads(object.get()['Body'].read())
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('response_requirements')
 
-@app.route('/', methods = ['GET'])
+@application.route('/', methods = ['GET'])
 def home():
 	
 	return render_template('home.html')
 	
 
 
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
 	categories = {0 : 'no response required',
 				  1 : 'vague/general chat question',
@@ -49,7 +49,7 @@ def predict():
 	}
 	return jsonify(result)
 
-@app.route('/update', methods=['POST'])
+@application.route('/update', methods=['POST'])
 def retrieve():
 	req = request.get_json()
 	print(req)
@@ -77,5 +77,5 @@ def retrieve():
 
 if __name__ == '__main__':
 
-	app.debug = True
-	app.run()
+	application.debug = True
+	application.run()
