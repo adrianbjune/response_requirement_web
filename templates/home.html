@@ -1,0 +1,51 @@
+<html>
+
+	<head>
+		<link rel='stylesheet' href='/static/home.css' />
+		<title>Response Requirement</title>
+
+	</head>
+
+	<body>
+		<div>
+			<div id='prediction_div'>
+				<textarea id='text' rows='5', cols='50'>Type your message here</textarea>
+				<button id='predict'>Make Prediction</button>
+			</div>
+			<div id='evaluation_div' hidden>
+				<div id='prediction_text'></div>
+				<input type='number' id='prediction_class' hidden>
+				<div id='prediction'></div>
+				<div id='class_0_prediction'></div>
+				<div id='class_1_prediction'></div>
+				<div id='class_2_prediction'></div>
+				<div id='class_3_prediction'></div>
+
+				<div id='eval_1'>
+					<div>Was this an accurate prediction?</div>
+					<input id='num_prediction' type='number' hidden />
+					<button id='correct' value='1'>Yes</button>
+					<button id='incorrect' value='0'>No</button>
+				</div>
+				<div id='eval_2' hidden>
+					<div>What class should it have been?</div>
+					<input type='radio' name='class' value='0'>no response required <br>
+					<input type='radio' name='class' value='1'>vague/general chat question <br>
+					<input type='radio' name='class' value='2'>explicit question <br>
+					<input type='radio' name='class' value='3'>explicit call to action <br>
+					<button id='submit'>Submit</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div id='previously_predicted'>
+		</div>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src='/static/home.js'></script>
+	</body>
+
+</html>
