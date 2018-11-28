@@ -19,7 +19,7 @@ model = pickle.loads(object.get()['Body'].read())
 dynamodb = boto3.resource('dynamodb', 'us-east-1')
 table = dynamodb.Table('response_requirements')
 
-@application.route('/', methods = ['GET'])
+@application.route('/response_expectations', methods = ['GET'])
 def home():
 	
 	return render_template('home.html')
