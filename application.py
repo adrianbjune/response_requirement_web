@@ -15,6 +15,7 @@ s3 = boto3.resource('s3', 'us-east-1')
 object = s3.Object('adrian-kettle-capstone', 'model.pkl')
 model = pickle.loads(object.get()['Body'].read())
 
+forbidden = ['fuck', 'fuk', 'shit', 'sex', 'damn', 'bitch', 'cunt']
 
 dynamodb = boto3.resource('dynamodb', 'us-east-1')
 table = dynamodb.Table('response_requirements')
