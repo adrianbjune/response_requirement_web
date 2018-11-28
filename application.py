@@ -6,8 +6,8 @@ import boto3
 import time
 import nltk
 
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
+#nltk.download('punkt')
+#nltk.download('averaged_perceptron_tagger')
 
 application = Flask(__name__)
 
