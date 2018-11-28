@@ -8,7 +8,10 @@ import time
 
 app = Flask(__name__)
 
-model = pickle.load(open('model.pkl', 'rb'))
+s3 = boto3.resource('s3')
+object = s3.Object('adrian-kettle-capstone', 'model.pkl')
+model = pickle.loads(object.get()['Body'].read())
+
 
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('response_requirements')
