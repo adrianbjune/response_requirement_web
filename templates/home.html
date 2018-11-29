@@ -7,40 +7,67 @@
 	</head>
 
 	<body>
+		<div hidden>
+		                                      88           
+		                                ,d    88           
+		                                88    88           
+		88,dPYba,,adPYba,   ,adPPYba, MM88MMM 88,dPPYba,   
+		88P'   "88"    "8a a8"     "8a  88    88P'    "8a  
+		88      88      88 8b       d8  88    88       88  
+		88      88      88 "8a,   ,a8"  88,   88       88  
+		88      88      88  `"YbbdP"'   "Y888 88       88  
+
+		</div>
+
 		<div id='current_prediction'>
 			<div id='prediction_div'>
-				<textarea id='text' rows='5', cols='50' onfocus="this.value = ''">Type your message here</textarea>
+				<textarea id='text' onfocus="this.value = ''">Type your message here</textarea>
 				<button id='predict'>Make Prediction</button>
 			</div>
 			<div id='evaluation_div' hidden>
-				<div><b>Predicted message:</b><span id='prediction_text'></span></div>
+				<div><h2>Message:</h2><span id='prediction_text'></span></div>
 				<input type='number' id='prediction_class' hidden>
 				<div id='prediction'></div>
+				<h2>Probabilities:</h2>
 				<div id='class_0_prediction'></div>
 				<div id='class_1_prediction'></div>
 				<div id='class_2_prediction'></div>
 				<div id='class_3_prediction'></div>
 
 				<div id='eval_1'>
-					<div><b>Was this an accurate prediction?</b></div>
+					<div><h2>Was this an accurate prediction?</h2></div>
 					<input id='num_prediction' type='number' hidden />
 					<button id='correct' value='1'>Yes</button>
 					<button id='incorrect' value='0'>No</button>
 				</div>
 				<div id='eval_2' hidden>
-					<div><b>What class should it have been?</b></div>
-					<input type='radio' name='class' value='0'>no response required <br>
-					<input type='radio' name='class' value='1'>vague/general chat question <br>
-					<input type='radio' name='class' value='2'>explicit question <br>
-					<input type='radio' name='class' value='3'>explicit call to action <br>
+					<div><h2>What class should it have been?</h2></div>
+					<input type='radio' name='class' value='0'>
+						<span class='radio_text' id='radio_0' value='0'>no response required</span> <br>
+					<input type='radio' name='class' value='1'>
+						<span class='radio_text' id='radio_1' value='1'>vague/general chat question</span> <br>
+					<input type='radio' name='class' value='2'>
+						<span class='radio_text' id='radio_2' value='2'>explicit question</span> <br>
+					<input type='radio' name='class' value='3'>
+						<span class='radio_text' id='radio_3' value='3'>explicit call to action</span> <br>
 					<button id='submit'>Submit</button>
 				</div>
+			</div>
+			<div id='class_defs'>
+				<h1>No Response Required</h1>
+				<p>General statements that don’t require and kind of response or action.</p>
+				<h1>Vague/General Chat Requests</h1>
+				<p>Questions or statements that aren’t asking for something specifically, but may want a response.</p>
+				<h1>Explicit Questions</h1>
+				<p>Questions that definitely require a specific answer.</p>
+				<h1>Explicit Calls to Action</h1>
+				<p>Messages that are asking or telling someone to actually DO something.</p>
 			</div>
 		</div>
 		
 		
 		
-		<table id='previously_predicted'>
+		<table class='fixed_header' id='previously_predicted'>
 
 		</table>
 

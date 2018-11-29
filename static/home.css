@@ -1,11 +1,37 @@
-textarea {
+body {
+	font-family: sans-serif;
+	padding:0;
+	margin:0;
+}
+
+#evaluation_div {
+	background-color: #90B4FE;
+	border-color: #90B4FE;
+	outline-color: #90B4FE;
+	color: #FFFFFF;
+	margin-left: 10px;
+}
+
+#text {
 	resize: none;
+	float: left;
+	width: 400px;
+	height: 150px;
+	border-radius: 5px;
+	background-color: #E5E5E5;
+	border-color: #E5E5E5;
+	margin-left: 10px;
+	margin-top:10px;
 }
 
 #current_prediction {
+	background-color: #90B4FE;
 	float: left;
 	height: 100%;
 	width:30%;
+	position:fixed;
+	margin:0;
+	padding:0;
 }
 
 #previously_predicted{
@@ -17,8 +43,92 @@ textarea {
 	width:20%;
 }
 
+.fixed_header tbody{
+  display:block;
+  overflow:auto;
+  height:97vh;
+  width:100%;
+  padding:0;
+  margin:0;
+  
+}
+
+.fixed_header thead {
+  display:block;
+}
+
+.fixed_header .prediction_class {
+	width:14vw;
+	text-align: left;
+}
+
+.fixed_header .prediction_text {
+	width:56vw;
+	text-align: left
+}
+
+table {
+	border: 0;
+
+}
+
+tr {
+	margin:0;
+	padding:0;
+}
+
+td {
+	padding:0;
+	margin:0;
+}
+
 table tr:nth-child(even) {
-    background-color: #eee;
+    background-color: #E5E5E5;;
 }
 table tr:nth-child(odd) {
-    background-color: #fff;
+    background-color: #FFFFFF;
+}
+
+#predict {
+	width: 130px;
+	height: 50px;
+	position: absolute;
+	top:60px;
+	margin-left: 20px;
+	font-size: 14;
+	border-radius: 5px;
+	background-color:#0C1240;
+	border-color: #0C1240;
+	color: #E5E5E5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#predict:hover {
+	background-color: #19247F;
+	border-color: #19247F; 
+	color: #FFFFFF;
+}
+
+h2 {
+	margin-bottom: 5px;
+	padding-bottom: 0;
+}
+
+h1 {
+	margin-bottom: 0;
+	padding-bottom: 5px;
+}
+
+p {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#class_defs {
+	color: #FFFFFF;
+	position: fixed;
+	bottom: 0;
+	width: 30%;
+	padding-left: 10px;
+}

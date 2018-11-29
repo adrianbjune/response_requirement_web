@@ -5,10 +5,10 @@ $(document).ready(
 			contentType: 'application/json'
 	})
 
-		$('#previously_predicted').html('<tr>' +
+		$('#previously_predicted').html('<thead><tr>' +
 										'<th class="prediction_class">Prediction</th>' +
 										'<th class="prediction_text">Message</th>' +
-										'</tr>')
+										'</tr></thead><tbody>')
 		console.log(response)
 		$.each(response.items, function(index, element){
 			
@@ -16,7 +16,7 @@ $(document).ready(
 			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
 											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
-
+		$('#previously_predicted').append('</tbody>')
 		$('#prediction_text').text('')
 		$('#prediction_class').val('')
 		$('#evaluation_div').hide()
@@ -41,7 +41,7 @@ $(document).ready(function(){
 		})
 		console.log(response)
 		$('#prediction_text').text(text)
-		$('#prediction').html('<b>Prediction:</b>' + response.prediction)
+		$('#prediction').html('<h2>Prediction:</h2>' + response.prediction)
 		$('#prediction_class').val(response.class)
 		$('#class_0_prediction').text(response.c0 + '% chance of no response required.')
 		$('#class_1_prediction').text(response.c1 + '% chance of a vague/general chat question.')
@@ -68,10 +68,10 @@ $(document).ready(function(){
 			contentType: 'application/json'
 		})
 
-		$('#previously_predicted').html('<tr>' +
+		$('#previously_predicted').html('<thead><tr>' +
 										'<th class="prediction_class">Prediction</th>' +
 										'<th class="prediction_text">Message</th>' +
-										'</tr>')
+										'</tr></thead><tbody>')
 		console.log(response)
 		$.each(response.items, function(index, element){
 			
@@ -79,7 +79,7 @@ $(document).ready(function(){
 			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
 											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
-
+		$('#previously_predicted').append('</tbody>')
 		$('#prediction_text').text('')
 		$('#prediction_class').val('')
 		$('#evaluation_div').hide()
@@ -110,16 +110,17 @@ $(document).ready(function(){
 			contentType: 'application/json'
 		})
 		
-		$('#previously_predicted').html('<tr>' +
+		$('#previously_predicted').html('<thead><tr>' +
 										'<th class="prediction_class">Prediction</th>' +
 										'<th class="prediction_text">Message</th>' +
-										'</tr>')
+										'</tr></thead><tbody>')
 		console.log(response)
 		$.each(response.items, function(index, element){
 
 			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
 											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
+		$('#previously_predicted').append('</tbody>')
 		$('#prediction_text').text('')
 		$('#prediction_class').val('')
 
@@ -130,8 +131,10 @@ $(document).ready(function(){
 		$('input[name=class]:checked').prop('checked', false)
 	})
 
-	$('#predict').focus(async function(){
-		this.value('')
+
+	$('.radio_text').click(async function(){
+		console.log($(this).attr('value'))
+		$('input[name=class][value='+$(this).attr('value')+']').prop('checked', true)
 	})
 
 })
