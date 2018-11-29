@@ -7,13 +7,13 @@
 	</head>
 
 	<body>
-		<div>
+		<div id='current_prediction'>
 			<div id='prediction_div'>
-				<textarea id='text' rows='5', cols='50'>Type your message here</textarea>
+				<textarea id='text' rows='5', cols='50' onfocus="this.value = ''">Type your message here</textarea>
 				<button id='predict'>Make Prediction</button>
 			</div>
 			<div id='evaluation_div' hidden>
-				<div id='prediction_text'></div>
+				<div><b>Predicted message:</b><span id='prediction_text'></span></div>
 				<input type='number' id='prediction_class' hidden>
 				<div id='prediction'></div>
 				<div id='class_0_prediction'></div>
@@ -22,13 +22,13 @@
 				<div id='class_3_prediction'></div>
 
 				<div id='eval_1'>
-					<div>Was this an accurate prediction?</div>
+					<div><b>Was this an accurate prediction?</b></div>
 					<input id='num_prediction' type='number' hidden />
 					<button id='correct' value='1'>Yes</button>
 					<button id='incorrect' value='0'>No</button>
 				</div>
 				<div id='eval_2' hidden>
-					<div>What class should it have been?</div>
+					<div><b>What class should it have been?</b></div>
 					<input type='radio' name='class' value='0'>no response required <br>
 					<input type='radio' name='class' value='1'>vague/general chat question <br>
 					<input type='radio' name='class' value='2'>explicit question <br>
@@ -40,8 +40,9 @@
 		
 		
 		
-		<div id='previously_predicted'>
-		</div>
+		<table id='previously_predicted'>
+
+		</table>
 
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

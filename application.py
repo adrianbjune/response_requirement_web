@@ -20,6 +20,11 @@ forbidden = ['fuck', 'fuk', 'shit', 'sex', 'damn', 'bitch', 'cunt']
 dynamodb = boto3.resource('dynamodb', 'us-east-1')
 table = dynamodb.Table('response_requirements')
 
+categories = {0 : 'no response required',
+				  1 : 'vague/general chat question',
+				  2 : 'explicit question',
+				  3 : 'explicit call to action'}
+
 @application.route('/response_expectations', methods = ['GET'])
 def home():
 	
@@ -29,10 +34,7 @@ def home():
 
 @application.route('/predict', methods=['POST'])
 def predict():
-	categories = {0 : 'no response required',
-				  1 : 'vague/general chat question',
-				  2 : 'explicit question',
-				  3 : 'explicit call to action'}
+	
 	req = request.get_json()
 	text = req['text']
 	to_predict = pd.DataFrame({'text':[text]})
@@ -54,7 +56,7 @@ def predict():
 	return jsonify(result)
 
 @application.route('/update', methods=['POST'])
-def retrieve():
+def update():
 	req = request.get_json()
 	print(req)
 
@@ -66,21 +68,28 @@ def retrieve():
 			'timestamp' : int(time.time())
 		})
 
+	updated = retrieve()
+	return updated
+	
+
+@application.route('/retrieve', methods=['POST'])
+def retrieve():
+	print('retrieving data')
 	response = table.scan()
 	print(response)
 	messages = []
+	print(len(response['Items']))
 	for mess in response['Items']:
-		if any([word in mess['text'] for word in forbidden]):
-			break
-		else:	
+		if not any([word in mess['text'] for word in forbidden]):
+			print('adding ' + mess['text'])
 			messages.append({'text':mess['text'], 
 				'label':int(mess['label']),
-				'prediction':int(mess['prediction']),
+				'prediction':categories[int(mess['prediction'])],
 				'ts':int(mess['timestamp'])})
+
 	messages.sort(reverse=True, key=(lambda x : x['ts']))
+
 	return jsonify({'items':messages})
-
-
 
 if __name__ == '__main__':
 

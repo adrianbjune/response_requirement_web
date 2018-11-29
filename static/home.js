@@ -1,3 +1,28 @@
+$(document).ready(
+	async function(){
+		const response = await $.ajax('/retrieve', {
+			method: 'POST',
+			contentType: 'application/json'
+	})
+
+		$('#previously_predicted').html('<tr>' +
+										'<th class="prediction_class">Prediction</th>' +
+										'<th class="prediction_text">Message</th>' +
+										'</tr>')
+		console.log(response)
+		$.each(response.items, function(index, element){
+			
+
+			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
+											'<td class="prediction_text">'+element.text+'</td></tr>')
+		})
+
+		$('#prediction_text').text('')
+		$('#prediction_class').val('')
+		$('#evaluation_div').hide()
+		$('#prediction_div').show()
+	})
+
 $(document).ready(function(){
 
 	console.log('document is ready')
@@ -16,7 +41,7 @@ $(document).ready(function(){
 		})
 		console.log(response)
 		$('#prediction_text').text(text)
-		$('#prediction').text(response.prediction)
+		$('#prediction').html('<b>Prediction:</b>' + response.prediction)
 		$('#prediction_class').val(response.class)
 		$('#class_0_prediction').text(response.c0 + '% chance of no response required.')
 		$('#class_1_prediction').text(response.c1 + '% chance of a vague/general chat question.')
@@ -43,11 +68,16 @@ $(document).ready(function(){
 			contentType: 'application/json'
 		})
 
-		$('#previously_predicted').html('')
+		$('#previously_predicted').html('<tr>' +
+										'<th class="prediction_class">Prediction</th>' +
+										'<th class="prediction_text">Message</th>' +
+										'</tr>')
+		console.log(response)
 		$.each(response.items, function(index, element){
-			console.log(element)
+			
 
-			$('#previously_predicted').append('<div>'+element.text+'</div>')
+			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
+											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
 
 		$('#prediction_text').text('')
@@ -72,18 +102,23 @@ $(document).ready(function(){
 			label,
 			predicted 
 		}
-
+		console.log(data)
+		
 		const response = await $.ajax('/update', {
 			data: JSON.stringify(data),
 			method: 'POST',
 			contentType: 'application/json'
 		})
-
-		$('#previously_predicted').html('')
+		
+		$('#previously_predicted').html('<tr>' +
+										'<th class="prediction_class">Prediction</th>' +
+										'<th class="prediction_text">Message</th>' +
+										'</tr>')
+		console.log(response)
 		$.each(response.items, function(index, element){
-			console.log(element)
 
-			$('#previously_predicted').append('<div>'+element.text+'</div>')
+			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
+											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
 		$('#prediction_text').text('')
 		$('#prediction_class').val('')
@@ -93,6 +128,10 @@ $(document).ready(function(){
 		$('#eval_1').show()
 		$('#prediction_div').show()
 		$('input[name=class]:checked').prop('checked', false)
+	})
+
+	$('#predict').focus(async function(){
+		this.value('')
 	})
 
 })
