@@ -82,8 +82,12 @@ def retrieve():
 	for mess in response['Items']:
 		if not any([word in mess['text'] for word in forbidden]):
 			print('adding ' + mess['text'])
+			if mess['label'] == mess['prediction']:
+				img = 'check.png'
+			else:
+				img = 'x.png'
 			messages.append({'text':mess['text'], 
-				'label':int(mess['label']),
+				'image':img,
 				'prediction':categories[int(mess['prediction'])],
 				'ts':int(mess['timestamp'])})
 

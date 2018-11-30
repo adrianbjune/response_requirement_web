@@ -6,6 +6,7 @@ $(document).ready(
 	})
 
 		$('#previously_predicted').html('<thead><tr>' +
+										'<th class="correct_class"></th>' +
 										'<th class="prediction_class">Prediction</th>' +
 										'<th class="prediction_text">Message</th>' +
 										'</tr></thead><tbody>')
@@ -13,10 +14,13 @@ $(document).ready(
 		$.each(response.items, function(index, element){
 			
 
-			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
+			$('#previously_predicted').append('<tr>'+
+											'<td class="correct_class"><img src="/static/images/' + element.image + '"/></td>' +
+											'<td class="prediction_class">'+element.prediction+'</td>'+
 											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
 		$('#previously_predicted').append('</tbody>')
+		console.log($('#previously_predicted').html())
 		$('#prediction_text').text('')
 		$('#prediction_class').val('')
 		$('#evaluation_div').hide()
@@ -69,6 +73,7 @@ $(document).ready(function(){
 		})
 
 		$('#previously_predicted').html('<thead><tr>' +
+										'<th class="correct_class"></th>' +
 										'<th class="prediction_class">Prediction</th>' +
 										'<th class="prediction_text">Message</th>' +
 										'</tr></thead><tbody>')
@@ -76,7 +81,9 @@ $(document).ready(function(){
 		$.each(response.items, function(index, element){
 			
 
-			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
+			$('#previously_predicted').append('<tr>'+
+											'<td class="correct_class"><img src="/static/images/' + element.image + '"/></td>' +
+											'<td class="prediction_class">'+element.prediction+'</td>'+
 											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
 		$('#previously_predicted').append('</tbody>')
@@ -111,13 +118,16 @@ $(document).ready(function(){
 		})
 		
 		$('#previously_predicted').html('<thead><tr>' +
+										'<th class="correct_class"></th>' +
 										'<th class="prediction_class">Prediction</th>' +
 										'<th class="prediction_text">Message</th>' +
 										'</tr></thead><tbody>')
 		console.log(response)
 		$.each(response.items, function(index, element){
 
-			$('#previously_predicted').append('<tr><td class="prediction_class">'+element.prediction+'</td>'+
+			$('#previously_predicted').append('<tr>' +
+											'<td class="correct_class"><img src="/static/images/' + element.image + '"/></td>' +
+											'<td class="prediction_class">'+element.prediction+'</td>'+
 											'<td class="prediction_text">'+element.text+'</td></tr>')
 		})
 		$('#previously_predicted').append('</tbody>')
