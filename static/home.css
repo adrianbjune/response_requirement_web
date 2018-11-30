@@ -121,7 +121,6 @@ table tr:nth-child(odd) {
 	background-color:#0C1240;
 	border-color: #0C1240;
 	color: #E5E5E5;
-	font-size: 14px;
 	font-weight: bold;
 	display:block;
 }
@@ -131,6 +130,24 @@ table tr:nth-child(odd) {
 	border-color: #19247F; 
 	color: #FFFFFF;
 }
+
+#correct , #incorrect, #submit{
+	width: 130px;
+	height: 50px;
+	font-size: 14;
+	border-radius: 5px;
+	background-color:#0C1240;
+	border-color: #0C1240;
+	color: #E5E5E5;
+	font-weight: bold;
+}
+
+#correct:hover, #incorrect:hover, #submit:hover {
+	background-color: #19247F;
+	border-color: #19247F; 
+	color: #FFFFFF;
+}
+
 
 h2 {
 	margin-bottom: 5px;
